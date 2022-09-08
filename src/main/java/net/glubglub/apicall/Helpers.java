@@ -12,10 +12,11 @@ import java.net.URL;
 import java.util.HashMap;
 
 public class Helpers {
-    public static String Get() {
+
+    // http json return body
+    public static String Anime() {
         String result = "";
         try {
-            // anime, character, quote
             URL url = new URL("https://animechan.vercel.app/api/random");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
@@ -29,6 +30,7 @@ public class Helpers {
                     sb.append(line);
                 }
                 Gson g = new Gson();
+                // anime, character, quote json object into hashmap
                 HashMap<String, String> map = g.fromJson(sb.toString(), HashMap.class);
                 result = map.get("quote");
             }
@@ -42,7 +44,8 @@ public class Helpers {
         return result;
     }
 
-    public static String Get2() {
+    // http single line txt body
+    public static String Insult() {
         String result = "";
         try {
             // anime, character, quote
