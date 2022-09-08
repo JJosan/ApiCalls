@@ -1,7 +1,6 @@
 package net.glubglub.apicall;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -73,4 +72,21 @@ public class Helpers {
         return result;
     }
 
+    // http post. calls from my local server
+    public static void Upload(String name) {
+        try {
+            URL url = new URL("http://localhost:3000/api/v1/poop?name=" + name);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("POST");
+            if(con.getResponseCode() == 200) {
+                System.out.println("SUCCESS");
+            }
+            con.disconnect();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+
+    }
 }
